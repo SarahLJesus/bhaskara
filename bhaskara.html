@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Bhaskara:</title>
+
+    <script>
+        function click_calcular() {
+
+            let valorA = Number(document.getElementById('valorA').value);
+            let valorB = Number(document.getElementById('valorB').value);
+            let valorC = Number(document.getElementById('valorC').value);
+
+            let delta = valorB * valorB - 4 * valorA * valorC;
+
+            if (delta > 0) {
+                let x1 = (-valorB + Math.sqrt(delta)) / (2 * valorA);
+                let x2 = (-valorB - Math.sqrt(delta)) / (2 * valorA);
+
+                document.getElementById('resposta').innerHTML = `x1 = ${x1} x2 = ${x2}`;
+            } else if (delta === 0) {
+                let x1 = -valorB / (2 * valorA);
+                document.getElementById('resposta').innerHTML = `x1 = ${x1}`;
+            } else {
+                document.getElementById('resposta').innerHTML = 'Sua equação não possui raízes reais, pois Δ < 0.';
+            }
+        }
+
+        function click_limpar() {
+
+            document.getElementById(`valorA`).value = ``;
+            document.getElementById(`valorB`).value = ``;
+            document.getElementById(`valorC`).value = ``;
+            document.getElementById(`resposta`).innerHTML = ``;
+
+        }
+    </script>
+</head>
+<body>
+
+    <div>
+        <div>
+            <h1>Calculadora de Bhaskara:</h1>
+        </div>
+        <form>
+
+            <div id="valores">
+                <input placeholder="Valor A" type="number" name="valorA" id="valorA" />
+                <input placeholder="Valor B" type="number" name="valorB" id="valorB" />
+                <input placeholder="Valor C" type="number" name="valorC" id="valorC" />
+            </div>
+
+            <div>
+                <input type="button" value="calcular" onclick="click_calcular()" />
+                <input type="button" value="limpar" onclick="click_limpar()" />
+            </div>
+
+            <div id="resposta">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
